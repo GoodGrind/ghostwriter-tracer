@@ -1,0 +1,2 @@
+include 'ghostwriter-rt-tracer'
+rootProject.name = 'ghostwriter'
