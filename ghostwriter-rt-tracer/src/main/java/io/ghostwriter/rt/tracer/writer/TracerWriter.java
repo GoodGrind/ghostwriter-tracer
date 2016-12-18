@@ -3,16 +3,16 @@ package io.ghostwriter.rt.tracer.writer;
 
 public interface TracerWriter {
 
-    void writeEntering(String msg);
+    void writeEntering(Object source, String msg);
 
-    void writeReturning(String msg);
+    void writeReturning(Object source, String msg);
 
-    void writeExiting(String msg);
+    void writeExiting(Object source, String msg);
 
-    void writeValueChange(String msg);
+    void writeValueChange(Object source, String msg);
 
-    void writeError(String msg);
+    void writeError(Object source, String msg);
 
-    void writeTimeout(String msg);
+    void writeTimeout(Object source, String msg);
 
 }

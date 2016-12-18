@@ -1,4 +1,4 @@
-package io.ghostwriter.rt.tracer;
+package io.ghostwriter.rt.tracer.serializer;
 
 
 final class Indentation {

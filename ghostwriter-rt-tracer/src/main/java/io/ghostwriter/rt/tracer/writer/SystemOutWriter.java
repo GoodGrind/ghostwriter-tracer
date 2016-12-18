@@ -1,45 +1,36 @@
-package io.ghostwriter.rt.tracer;
+package io.ghostwriter.rt.tracer.writer;
 
 
-import io.ghostwriter.rt.tracer.writer.TracerWriter;
-
-public class StringTracerWriter implements TracerWriter {
-
-    private StringBuilder sb = new StringBuilder();
+public class SystemOutWriter implements TracerWriter {
 
     @Override
     public void writeEntering(Object source, String msg) {
-        sb.append(msg);
+        System.out.println(msg);
     }
 
     @Override
     public void writeReturning(Object source, String msg) {
-        sb.append(msg);
+        System.out.println(msg);
     }
 
     @Override
     public void writeExiting(Object source, String msg) {
-        sb.append(msg);
+        System.out.println(msg);
     }
 
     @Override
     public void writeValueChange(Object source, String msg) {
-        sb.append(msg);
+        System.out.println(msg);
     }
 
     @Override
     public void writeError(Object source, String msg) {
-        sb.append(msg);
+        System.out.println(msg);
     }
 
     @Override
     public void writeTimeout(Object source, String msg) {
-        sb.append(msg);
-    }
-
-    @Override
-    public String toString() {
-        return sb.toString();
+        System.out.println(msg);
     }
 
 }

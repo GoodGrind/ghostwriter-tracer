@@ -1,2 +1,3 @@
 include 'ghostwriter-rt-tracer'
+include 'ghostwriter-rt-tracer-slf4j'
 rootProject.name = 'ghostwriter'
