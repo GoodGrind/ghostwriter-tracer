@@ -30,7 +30,7 @@ public class StringSerializer implements TracerSerializer {
         }
         assert contextClass != null;
 
-        final String context = serialize(contextClass.getCanonicalName());
+        final String context = contextClass.getCanonicalName();
 
         if (doIndent) {
             indentation.apply(sb);
@@ -83,7 +83,7 @@ public class StringSerializer implements TracerSerializer {
         if (doIndent) {
             indentation.apply(sb);
         }
-        sb.append("<return> ").append(value).append("\n");
+        sb.append("return ").append(value).append("\n");
 
         return sb.toString();
     }
@@ -97,7 +97,7 @@ public class StringSerializer implements TracerSerializer {
             indentation.apply(sb);
         }
         final String errorStr = serialize(error);
-        sb.append("<error> ").append(errorStr);
+        sb.append("ERROR: ").append(errorStr);
 
         return sb.toString();
     }
@@ -110,7 +110,7 @@ public class StringSerializer implements TracerSerializer {
         if (doIndent) {
             indentation.apply(sb);
         }
-        sb.append("<timeout> ").append(timeout).append("\n");
+        sb.append("TIMEOUT: ").append(timeout).append("\n");
 
         return sb.toString();
     }
@@ -121,8 +121,8 @@ public class StringSerializer implements TracerSerializer {
         for (int i = 0; i < params.length; i += NUMBER_OF_ENTRIES_PER_PARAMETERS) {
             Object parameterName = params[i];
             Object parameterValue = params[i + 1];
-            String name = serialize(parameterName);
-            String value = serialize(parameterValue);
+            final String name = String.valueOf(parameterName);
+            final String value = serialize(parameterValue);
             sb.append(name).append(" = ").append(value);
 
             boolean isFinalParameter = i == (params.length - NUMBER_OF_ENTRIES_PER_PARAMETERS);
@@ -134,8 +134,13 @@ public class StringSerializer implements TracerSerializer {
         return sb;
     }
 
+    // Override if you want to have a different toString solution used, such as one based on reflection
     protected String serialize(Object value) {
-        return String.valueOf(value);
+        final String stringRepresentation = String.valueOf(value);
+        if (value instanceof String) {
+            return "\"" + stringRepresentation + "\"";
+        }
+        return stringRepresentation;
     }
 
 }
