@@ -1,6 +1,6 @@
 = GhostWriter
 
-:version: 0.1.1
+:version: 0.3.0
 
 image:https://travis-ci.org/GoodGrind/ghostwriter-tracer.svg?branch=master["Build Status", link="https://travis-ci.org/GoodGrind/ghostwriter-tracer"]
 image:https://maven-badges.herokuapp.com/maven-central/io.ghostwriter/ghostwriter-api-java/badge.svg["Maven Central", link="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22io.ghostwriter%22%20v%3A{version}"]
@@ -8,4 +8,47 @@ image:https://img.shields.io/badge/license-LGPLv2.1-blue.svg?style=flat["License
 image:https://api.codacy.com/project/badge/Grade/06f2e1765ae043ee96803257975c8764["Codacy code quality", link="https://www.codacy.com/app/snorbi07/ghostwriter-tracer?utm_source=github.com&utm_medium=referral&utm_content=GoodGrind/ghostwriter-tracer&utm_campaign=Badge_Grade"]
 
 == About
-Runtime implementation for _ghostwriter_ that provides application flow tracing.
+Runtime implementation for _ghostwriter-api_ that provides application flow tracing of your application.
+The traced data is sent to either the standard _System.out_ or to an _SL4J_ handler.
+
+== Overview
+To summarize what it does, lets take the before/after output of a simple https://raw.githubusercontent.com/GoodGrind/ghostwriter-sample/master/fizzbuzz/src/main/java/io/ghostwriter/sample/fizzbuzz/FizzBuzz.java[FizzBuzz] implementation.
+
+=== Before
+image::media/fizzBuzz.png[ghostwriter-tracer]
+
+=== After
+Using the SLF4J writer (_ghostwriter-tracer-slf4j_), with a _TRACE_ level configuration for _SLF4J_.
+
+image::media/tracedFizzBuzz.png[ghostwriter-tracer]
+
+== Getting started
+
+First, you need to compile your application with GhostWriter. For details on how to do that, check the Todo:link[README].
+With that step done, all that remains is to use the correct dependencies at runtime.
+
+=== Maven
+
+TODO: add relevant sample section
+
+=== Gradle
+
+TODO: add relevant sample section
+
+== Extending
+
+The _ghostwriter-rt-tracer_ module provides a default string serialization and output strategy.
+In order to override the default behaviour custom implementations of the relevant interfaces should be provided.
+The _ghostwriter-rt-tracer_ uses the service loader pattern and will use the first implementation found on the classpath.
+
+=== Custom serializer
+
+To provide your own serialization logic just create an implementation for the _TracerSerializer_ interface.
+
+TODO: add TracerSerializer interface section
+
+=== Custom writer
+
+In case you want to dump the tracing information in a different way, provide your own implementation of _TracerSerializer_.
+
+TODO: add TracerSerializer interface section
