@@ -18,7 +18,7 @@
          -->
         <dependency>
             <groupId>io.ghostwriter</groupId>
-            <artifactId>ghostwriter-openjdk-v8</artifactId>
+            <artifactId>ghostwriter-jdk-v8</artifactId>
             <version>0.3.0</version>
             <scope>compile</scope>
             <classifier>bundle</classifier>

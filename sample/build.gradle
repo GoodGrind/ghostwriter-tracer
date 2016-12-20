@@ -3,13 +3,13 @@ apply plugin: "application"
 
 repositories {
     mavenLocal()
-    mavenCentral()
+//    mavenCentral()
 }
 
 dependencies {
     // To get started with GhostWriter, you need to reference and use the compile-time dependency that contains the preprocessor
     // The preprocessor instruments the use of the GhostWriter API into your application.
-    compileOnly "io.ghostwriter:ghostwriter-openjdk-v8:0.3.0:bundle"
+    compileOnly "io.ghostwriter:ghostwriter-jdk-v8:0.3.0:bundle"
 
     // The standard GhostWriter API dependency that gets instrumented into your application
     compile "io.ghostwriter:ghostwriter-api-java:0.3.0"
