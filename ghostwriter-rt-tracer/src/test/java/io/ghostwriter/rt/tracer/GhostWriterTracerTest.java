@@ -21,8 +21,8 @@ public class GhostWriterTracerTest {
         final String repr = tracerWriter.toString();
         assertTrue(repr.equals(
                 "io.ghostwriter.rt.tracer.GhostWriterTracerTest.testMethodCallTracing(c = 123, d = 444) {\n" +
-                "   say = hello\n" +
-                "   <return> goodbye\n" +
+                "   say = \"hello\"\n" +
+                "   return \"goodbye\"\n" +
                 "}\n"));
     }
 
@@ -44,7 +44,7 @@ public class GhostWriterTracerTest {
                 "io.ghostwriter.rt.tracer.GhostWriterTracerTest.method1(a = 1, b = 2) {\n" +
                 "   io.ghostwriter.rt.tracer.GhostWriterTracerTest.method2() {\n" +
                 "      io.ghostwriter.rt.tracer.GhostWriterTracerTest.method3() {\n" +
-                "         <return> 23\n" +
+                "         return 23\n" +
                 "      }\n" +
                 "   }\n" +
                 "}\n"));
@@ -68,7 +68,7 @@ public class GhostWriterTracerTest {
                 "io.ghostwriter.rt.tracer.GhostWriterTracerTest.method1(a = 1, b = 2) {\n" +
                 "io.ghostwriter.rt.tracer.GhostWriterTracerTest.method2() {\n" +
                 "io.ghostwriter.rt.tracer.GhostWriterTracerTest.method3() {\n" +
-                "<return> 23\n" +
+                "return 23\n" +
                 "}\n" +
                 "}\n" +
                 "}\n"));
