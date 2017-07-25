@@ -4,8 +4,9 @@ ifdef::env-github[]
 :important-caption: :heavy_exclamation_mark:
 :caution-caption: :fire:
 :warning-caption: :warning:
-:outfilesuffix: .adoc
 endif::[]
+
+ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 
 = GhostWriter
 :toc: macro
