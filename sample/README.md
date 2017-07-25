@@ -8,7 +8,7 @@ Assuming that you have a working Maven and Gradle installation on your specified
 ### Maven
 
 ```
-mvn clean package exec:java
+mvn clean package exec:java -Dorg.slf4j.simpleLogger.defaultLogLevel=trace
 ```
 
 ### Gradle

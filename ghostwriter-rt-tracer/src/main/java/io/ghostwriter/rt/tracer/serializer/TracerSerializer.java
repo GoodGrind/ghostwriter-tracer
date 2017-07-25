@@ -1,5 +1,6 @@
 package io.ghostwriter.rt.tracer.serializer;
 
+// tag::serializer[]
 public interface TracerSerializer {
 
     String entering(Object source, String method, Object... params);
@@ -15,3 +16,4 @@ public interface TracerSerializer {
     String timeout(Object source, String method, long timeoutThreshold, long timeout);
 
 }
+// end::serializer[]

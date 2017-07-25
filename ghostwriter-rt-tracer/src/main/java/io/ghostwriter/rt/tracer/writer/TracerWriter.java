@@ -1,6 +1,6 @@
 package io.ghostwriter.rt.tracer.writer;
 
-
+// tag::writer[]
 public interface TracerWriter {
 
     void writeEntering(Object source, String msg);
@@ -16,3 +16,4 @@ public interface TracerWriter {
     void writeTimeout(Object source, String msg);
 
 }
+// end::writer[]
