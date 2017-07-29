@@ -57,7 +57,7 @@ To add tracing to your application with Maven, you need to add a runtime depende
 
 [source, xml]
 ----
-include::sample/pom.xml[tags=runtime, indent=0]
+include::sample/pom[tags=runtime, indent=0]
 ----
 
 ==== SLF4J writer
