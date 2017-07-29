@@ -57,7 +57,12 @@ To add tracing to your application with Maven, you need to add a runtime depende
 
 [source, xml]
 ----
-include::sample/pom[tags=runtime, indent=0]
+<dependency>
+    <groupId>io.ghostwriter</groupId>
+    <artifactId>ghostwriter-rt-tracer</artifactId>
+    <version>0.3.1</version>
+    <scope>runtime</scope>
+</dependency>
 ----
 
 ==== SLF4J writer
@@ -66,7 +71,12 @@ In order to use the SLF4J writer component of _ghostwriter-rt-tracer_, add the f
 
 [source, xml]
 ----
-include::sample/pom.xml[tags=slf4j, indent=0]
+<dependency>
+    <groupId>io.ghostwriter</groupId>
+    <artifactId>ghostwriter-rt-tracer-slf4j</artifactId>
+    <version>0.3.1</version>
+    <scope>runtime</scope>
+</dependency>
 ----
 
 Don't forget, to see the tracing output, you need to configure the appropriate SLF4J log level.
@@ -77,7 +87,7 @@ The complete, working example describe in this section can be found https://gith
 To add tracing to your application with Gradle, you need to add a runtime dependency for _ghostwriter-rt-tracer_. With this single step, your application should dump the tracing information to the standard output (_System.out_).
 [source,groovy]
 ----
-include::sample/build.gradle[tags=runtime,indent=0]
+runtime "io.ghostwriter:ghostwriter-rt-tracer:0.3.1"
 ----
 
 ==== SLF4J writer
@@ -85,7 +95,7 @@ include::sample/build.gradle[tags=runtime,indent=0]
 In order to use the SLF4J writer component of _ghostwriter-rt-tracer_, add the following dependency as well.
 [source,groovy]
 ----
-include::sample/build.gradle[tags=slf4j,indent=0]
+runtime "io.ghostwriter:ghostwriter-rt-tracer-slf4j:0.3.1"
 ----
 
 Don't forget, to see the tracing output, you need to configure the appropriate SLF4J log level.
@@ -103,7 +113,21 @@ To provide your own serialization logic for each specific trace event, just crea
 
 [source, java]
 ----
-include::ghostwriter-rt-tracer/src/main/java/io/ghostwriter/rt/tracer/serializer/TracerSerializer.java[tags=serializer, indent=0]
+public interface TracerSerializer {
+
+    String entering(Object source, String method, Object... params);
+
+    String exiting(Object source, String method);
+
+    String valueChange(Object source, String method, String variable, Object value);
+
+    String returning(Object source, String method, Object returnValue);
+
+    String onError(Object source, String method, Throwable error);
+
+    String timeout(Object source, String method, long timeoutThreshold, long timeout);
+
+}
 ----
 
 To start using it, you need to package it into a standalone JAR, that conforms to the https://docs.oracle.com/javase/7/docs/api/java/util/ServiceLoader.html[ServiceLoader] requirements.
@@ -122,7 +146,21 @@ The first step is to provide an implementation of _TracerWriter_ interface provi
 
 [source, java]
 ----
-include::ghostwriter-rt-tracer/src/main/java/io/ghostwriter/rt/tracer/writer/TracerWriter.java[tags=writer, indent=0]
+public interface TracerWriter {
+
+    void writeEntering(Object source, String msg);
+
+    void writeReturning(Object source, String msg);
+
+    void writeExiting(Object source, String msg);
+
+    void writeValueChange(Object source, String msg);
+
+    void writeError(Object source, String msg);
+
+    void writeTimeout(Object source, String msg);
+
+}
 ----
 
 From here on, you need to follow the same packaging steps/requirements outlined in the _Custom serializer_ section, where the main difference being the service-provider configuration.
