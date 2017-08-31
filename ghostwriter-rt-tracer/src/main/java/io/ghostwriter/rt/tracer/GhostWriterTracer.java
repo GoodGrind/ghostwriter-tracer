@@ -1,13 +1,13 @@
 package io.ghostwriter.rt.tracer;
 
+import java.util.Objects;
+import java.util.ServiceLoader;
+
 import io.ghostwriter.Tracer;
 import io.ghostwriter.rt.tracer.serializer.StringSerializer;
 import io.ghostwriter.rt.tracer.serializer.TracerSerializer;
 import io.ghostwriter.rt.tracer.writer.SystemOutWriter;
 import io.ghostwriter.rt.tracer.writer.TracerWriter;
-
-import java.util.Objects;
-import java.util.ServiceLoader;
 
 public class GhostWriterTracer implements Tracer {
 
@@ -61,7 +61,7 @@ public class GhostWriterTracer implements Tracer {
     }
 
     private static TracerSerializer loadSearializer() {
-        ServiceLoader<TracerSerializer> serviceLoader = ServiceLoader.load(TracerSerializer.class);
+        ServiceLoader<TracerSerializer> serviceLoader = ServiceLoader.load(TracerSerializer.class, GhostWriterTracer.class.getClassLoader());
 
         TracerSerializer loadedSerializer = null;
         for (TracerSerializer serializer : serviceLoader) {
@@ -77,7 +77,7 @@ public class GhostWriterTracer implements Tracer {
     }
 
     private static TracerWriter loadWriter() {
-        ServiceLoader<TracerWriter> serviceLoader = ServiceLoader.load(TracerWriter.class);
+        ServiceLoader<TracerWriter> serviceLoader = ServiceLoader.load(TracerWriter.class, GhostWriterTracer.class.getClassLoader());
 
         TracerWriter loadedWriter = null;
         for (TracerWriter writer : serviceLoader) {
