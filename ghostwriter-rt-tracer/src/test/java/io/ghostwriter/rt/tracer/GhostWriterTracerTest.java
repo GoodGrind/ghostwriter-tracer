@@ -11,7 +11,7 @@ public class GhostWriterTracerTest {
     @Test
     public void testMethodCallTracing() {
         StringTracerWriter tracerWriter = new StringTracerWriter();
-        GhostWriterTracer tracer = new GhostWriterTracer(new StringSerializer(), tracerWriter);
+        GhostWriterTracer tracer = new GhostWriterTracer(tracerWriter);
 
         tracer.entering(this, "testMethodCallTracing", "c", 123, "d", 444);
         tracer.valueChange(this, "testMethodCallTracing", "say", "hello");
@@ -29,7 +29,7 @@ public class GhostWriterTracerTest {
     @Test
     public void testNestedMethodCalls() {
         StringTracerWriter tracerWriter = new StringTracerWriter();
-        GhostWriterTracer tracer = new GhostWriterTracer(new StringSerializer(), tracerWriter);
+        GhostWriterTracer tracer = new GhostWriterTracer(tracerWriter);
 
         tracer.entering(this, "method1", "a", 1, "b", 2);
         tracer.entering(this, "method2");
@@ -53,7 +53,7 @@ public class GhostWriterTracerTest {
     @Test
     public void testDisabledIndentation() {
         StringTracerWriter tracerWriter = new StringTracerWriter();
-        GhostWriterTracer tracer = new GhostWriterTracer(new StringSerializer(false), tracerWriter);
+        GhostWriterTracer tracer = new GhostWriterTracer(tracerWriter);
 
         tracer.entering(this, "method1", "a", 1, "b", 2);
         tracer.entering(this, "method2");
