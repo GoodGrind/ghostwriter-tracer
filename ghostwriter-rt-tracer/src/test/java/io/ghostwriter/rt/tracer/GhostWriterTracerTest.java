@@ -52,7 +52,7 @@ public class GhostWriterTracerTest {
 
     @Test
     public void testDisabledIndentation() {
-        StringTracerWriter tracerWriter = new StringTracerWriter();
+        StringTracerWriter tracerWriter = new StringTracerWriter(new StringSerializer(false, true));
         GhostWriterTracer tracer = new GhostWriterTracer(tracerWriter);
 
         tracer.entering(this, "method1", "a", 1, "b", 2);

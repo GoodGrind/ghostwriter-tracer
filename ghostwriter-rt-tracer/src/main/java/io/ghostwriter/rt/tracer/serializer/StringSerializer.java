@@ -7,13 +7,16 @@ public class StringSerializer implements TracerSerializer {
 
     private final boolean doIndent;
 
-    public StringSerializer(boolean doIndent) {
+    private final boolean isFormatted;
+
+    public StringSerializer(boolean doIndent, boolean isFormatted) {
         this.indentation = new Indentation();
         this.doIndent = doIndent;
+        this.isFormatted = isFormatted;
     }
 
     public StringSerializer() {
-        this(true);
+        this(true, true);
     }
 
     @Override
@@ -37,7 +40,11 @@ public class StringSerializer implements TracerSerializer {
         }
 
         sb.append(context).append(".").append(method).append("(");
-        appendParameters(sb, params).append(") {\n");
+        appendParameters(sb, params).append(") {");
+
+        if (isFormatted) {
+            sb.append('\n');
+        }
 
         if (doIndent) {
             indentation.indent();
@@ -55,7 +62,11 @@ public class StringSerializer implements TracerSerializer {
             indentation.dedent();
             indentation.apply(sb);
         }
-        sb.append("}\n");
+        sb.append("}");
+
+        if (isFormatted) {
+            sb.append("\n");
+        }
 
         return sb.toString();
     }
@@ -69,7 +80,11 @@ public class StringSerializer implements TracerSerializer {
         if (doIndent) {
             indentation.apply(sb);
         }
-        sb.append(variable).append(" = ").append(strValue).append("\n");
+        sb.append(variable).append(" = ").append(strValue);
+
+        if (isFormatted) {
+            sb.append("\n");
+        }
 
         return sb.toString();
     }
@@ -83,7 +98,11 @@ public class StringSerializer implements TracerSerializer {
         if (doIndent) {
             indentation.apply(sb);
         }
-        sb.append("return ").append(value).append("\n");
+        sb.append("return ").append(value);
+
+        if (isFormatted) {
+            sb.append("\n");
+        }
 
         return sb.toString();
     }
@@ -99,6 +118,10 @@ public class StringSerializer implements TracerSerializer {
         final String errorStr = serialize(error);
         sb.append("ERROR: ").append(errorStr);
 
+        if (isFormatted) {
+            sb.append("\n");
+        }
+
         return sb.toString();
     }
 
@@ -110,7 +133,11 @@ public class StringSerializer implements TracerSerializer {
         if (doIndent) {
             indentation.apply(sb);
         }
-        sb.append("TIMEOUT: ").append(timeout).append("\n");
+        sb.append("TIMEOUT: ").append(timeout);
+
+        if (isFormatted) {
+            sb.append("\n");
+        }
 
         return sb.toString();
     }
