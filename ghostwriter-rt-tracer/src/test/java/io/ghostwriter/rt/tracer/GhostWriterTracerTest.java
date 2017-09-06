@@ -10,7 +10,7 @@ public class GhostWriterTracerTest {
 
     @Test
     public void testMethodCallTracing() {
-        StringTracerWriter tracerWriter = new StringTracerWriter();
+        StringTracerWriter tracerWriter = new StringTracerWriter(new StringSerializer(true, true));
         GhostWriterTracer tracer = new GhostWriterTracer(tracerWriter);
 
         tracer.entering(this, "testMethodCallTracing", "c", 123, "d", 444);
@@ -28,7 +28,7 @@ public class GhostWriterTracerTest {
 
     @Test
     public void testNestedMethodCalls() {
-        StringTracerWriter tracerWriter = new StringTracerWriter();
+        StringTracerWriter tracerWriter = new StringTracerWriter(new StringSerializer(true, true));
         GhostWriterTracer tracer = new GhostWriterTracer(tracerWriter);
 
         tracer.entering(this, "method1", "a", 1, "b", 2);

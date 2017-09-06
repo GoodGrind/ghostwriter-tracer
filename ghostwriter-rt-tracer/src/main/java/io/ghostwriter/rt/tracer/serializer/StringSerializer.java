@@ -16,7 +16,7 @@ public class StringSerializer implements TracerSerializer {
     }
 
     public StringSerializer() {
-        this(true, true);
+        this(true, false);
     }
 
     @Override
