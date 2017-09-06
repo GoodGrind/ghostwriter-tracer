@@ -32,7 +32,7 @@
         <dependency>
             <groupId>io.ghostwriter</groupId>
             <artifactId>ghostwriter-rt-tracer</artifactId>
-            <version>0.3.1</version>
+            <version>0.4.0</version>
             <scope>runtime</scope>
         </dependency>
 <!-- end::runtime[] -->
@@ -46,7 +46,7 @@
         <dependency>
             <groupId>io.ghostwriter</groupId>
             <artifactId>ghostwriter-rt-tracer-slf4j</artifactId>
-            <version>0.3.1</version>
+            <version>0.4.0</version>
             <scope>runtime</scope>
         </dependency>
 <!-- end::slf4j[] -->
