@@ -125,8 +125,6 @@ public interface TracerSerializer {
 
     String onError(Object source, String method, Throwable error);
 
-    String timeout(Object source, String method, long timeoutThreshold, long timeout);
-
 }
 ----
 
@@ -157,8 +155,6 @@ public interface TracerWriter {
     void writeValueChange(Object source, String method, String variable, Object value);
 
     void writeError(Object source, String method, Throwable error);
-
-    void writeTimeout(Object source, String method, long timeoutThreshold, long timeout);
 
 }
 ----

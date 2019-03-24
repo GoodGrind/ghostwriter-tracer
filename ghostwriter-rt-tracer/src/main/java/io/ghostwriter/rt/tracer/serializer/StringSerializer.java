@@ -125,23 +125,6 @@ public class StringSerializer implements TracerSerializer {
         return sb.toString();
     }
 
-    @Override
-    public String timeout(Object source, String method, long timeoutThreshold, long timeout) {
-        final int DEFAULT_CAPACITY = 64;
-        final StringBuffer sb = new StringBuffer(DEFAULT_CAPACITY);
-
-        if (doIndent) {
-            indentation.apply(sb);
-        }
-        sb.append("TIMEOUT: ").append(timeout);
-
-        if (isFormatted) {
-            sb.append("\n");
-        }
-
-        return sb.toString();
-    }
-
     private StringBuffer appendParameters(StringBuffer sb, Object[] params) {
         final int NUMBER_OF_ENTRIES_PER_PARAMETERS = 2;
 

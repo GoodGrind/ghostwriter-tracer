@@ -13,7 +13,5 @@ public interface TracerSerializer {
 
     String onError(Object source, String method, Throwable error);
 
-    String timeout(Object source, String method, long timeoutThreshold, long timeout);
-
 }
 // end::serializer[]

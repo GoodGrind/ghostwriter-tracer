@@ -72,14 +72,6 @@ public class Slf4JWriter implements TracerWriter {
         }
     }
 
-    @Override
-    public void writeTimeout(Object source, String method, long timeoutThreshold, long timeout) {
-        final Logger logger = loggerForEventSource(source);
-        if (logger.isTraceEnabled()) {
-            logger.trace(serializer.timeout(source, method, timeoutThreshold, timeout));
-        }
-    }
-
     private static Logger loggerForEventSource(Object source) {
         Objects.requireNonNull(source);
 
