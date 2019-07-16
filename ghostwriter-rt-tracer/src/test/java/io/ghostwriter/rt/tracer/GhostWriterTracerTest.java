@@ -5,6 +5,7 @@ import io.ghostwriter.rt.tracer.serializer.StringSerializer;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class GhostWriterTracerTest {
 
@@ -72,6 +73,17 @@ public class GhostWriterTracerTest {
                 "}\n" +
                 "}\n" +
                 "}\n"));
+    }
+
+    @Test
+    public void testExceptionsInToStringAreHandled() {
+        StringTracerWriter tracerWriter = new StringTracerWriter(new StringSerializer(true, true));
+        GhostWriterTracer tracer = new GhostWriterTracer(tracerWriter);
+
+        tracer.entering(this, "testMethodCallTracing", "faultyToString", new FaultyToString());
+
+        final String repr = tracerWriter.toString();
+        assertEquals(repr, "io.ghostwriter.rt.tracer.GhostWriterTracerTest.testMethodCallTracing(faultyToString = ???) {\n");
     }
 
 }

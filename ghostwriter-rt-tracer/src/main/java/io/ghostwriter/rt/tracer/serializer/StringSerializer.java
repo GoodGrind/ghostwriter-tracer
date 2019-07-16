@@ -146,7 +146,13 @@ public class StringSerializer implements TracerSerializer {
 
     // Override if you want to have a different toString solution used, such as one based on reflection
     protected String serialize(Object value) {
-        final String stringRepresentation = String.valueOf(value);
+        String stringRepresentation;
+        try {
+            stringRepresentation = String.valueOf(value);
+        } catch (Throwable t) {
+            stringRepresentation = "???";
+        }
+
         if (value instanceof String) {
             return "\"" + stringRepresentation + "\"";
         }
