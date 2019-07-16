@@ -86,4 +86,16 @@ public class GhostWriterTracerTest {
         assertEquals(repr, "io.ghostwriter.rt.tracer.GhostWriterTracerTest.testMethodCallTracing(faultyToString = ???) {\n");
     }
 
+    @Test
+    public void testUnwrapArrays() {
+        StringTracerWriter tracerWriter = new StringTracerWriter(new StringSerializer(true, true));
+        GhostWriterTracer tracer = new GhostWriterTracer(tracerWriter);
+
+        String[] arr = {"a", "b", "c"};
+        tracer.entering(this, "testMethodCallTracing", "arr", arr);
+
+        final String repr = tracerWriter.toString();
+        assertEquals(repr, "io.ghostwriter.rt.tracer.GhostWriterTracerTest.testMethodCallTracing(arr = [a, b, c]) {\n");
+    }
+
 }
