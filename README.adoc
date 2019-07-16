@@ -10,7 +10,7 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 
 = GhostWriter
 :toc: macro
-:version: 0.4.0
+:version: 0.5.0
 
 image:https://travis-ci.org/GoodGrind/ghostwriter-tracer.svg?branch=master["Build Status", link="https://travis-ci.org/GoodGrind/ghostwriter-tracer"]
 image:https://maven-badges.herokuapp.com/maven-central/io.ghostwriter/ghostwriter-rt-tracer/badge.svg["Maven Central", link="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22io.ghostwriter%22%20v%3A{version}"]
@@ -60,7 +60,7 @@ To add tracing to your application with Maven, you need to add a runtime depende
 <dependency>
     <groupId>io.ghostwriter</groupId>
     <artifactId>ghostwriter-rt-tracer</artifactId>
-    <version>0.4.0</version>
+    <version>0.5.0</version>
     <scope>runtime</scope>
 </dependency>
 ----
@@ -74,7 +74,7 @@ In order to use the SLF4J writer component of _ghostwriter-rt-tracer_, add the f
 <dependency>
     <groupId>io.ghostwriter</groupId>
     <artifactId>ghostwriter-rt-tracer-slf4j</artifactId>
-    <version>0.4.0</version>
+    <version>0.5.0</version>
     <scope>runtime</scope>
 </dependency>
 ----
@@ -87,7 +87,7 @@ The complete, working example describe in this section can be found https://gith
 To add tracing to your application with Gradle, you need to add a runtime dependency for _ghostwriter-rt-tracer_. With this single step, your application should dump the tracing information to the standard output (_System.out_).
 [source,groovy]
 ----
-runtime "io.ghostwriter:ghostwriter-rt-tracer:0.4.0"
+runtime "io.ghostwriter:ghostwriter-rt-tracer:0.5.0"
 ----
 
 ==== SLF4J writer
@@ -95,7 +95,7 @@ runtime "io.ghostwriter:ghostwriter-rt-tracer:0.4.0"
 In order to use the SLF4J writer component of _ghostwriter-rt-tracer_, add the following dependency as well.
 [source,groovy]
 ----
-runtime "io.ghostwriter:ghostwriter-rt-tracer-slf4j:0.4.0"
+runtime "io.ghostwriter:ghostwriter-rt-tracer-slf4j:0.5.0"
 ----
 
 Don't forget, to see the tracing output, you need to configure the appropriate SLF4J log level.
