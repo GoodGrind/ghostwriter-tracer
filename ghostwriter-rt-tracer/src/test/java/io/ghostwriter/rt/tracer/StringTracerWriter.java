@@ -46,11 +46,6 @@ public class StringTracerWriter implements TracerWriter {
     }
 
     @Override
-    public void writeTimeout(Object source, String method, long timeoutThreshold, long timeout) {
-        sb.append(serializer.timeout(source, method, timeoutThreshold, timeout));
-    }
-
-    @Override
     public String toString() {
         return sb.toString();
     }

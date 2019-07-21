@@ -43,9 +43,4 @@ public class GhostWriterTracer implements Tracer {
         writer.writeError(source, method, error);
     }
 
-    @Override
-    public void timeout(Object source, String method, long timeoutThreshold, long timeout) {
-        writer.writeTimeout(source, method, timeoutThreshold, timeout);
-    }
-
 }

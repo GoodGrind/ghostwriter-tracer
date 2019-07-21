@@ -2,7 +2,7 @@ apply plugin: "maven"
 apply plugin: "signing"
 
 dependencies {
-    compile "io.ghostwriter:ghostwriter-api-java:${project.ext.ghostwriterApiVersion}"
+    runtime "io.ghostwriter:ghostwriter-api-java:${project.ext.ghostwriterApiVersion}"
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
     compile project(":ghostwriter-rt-tracer")
 

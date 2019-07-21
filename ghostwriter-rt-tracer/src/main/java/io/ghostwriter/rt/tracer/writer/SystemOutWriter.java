@@ -41,9 +41,4 @@ public class SystemOutWriter implements TracerWriter {
         System.out.println(serializer.onError(source, method, error));
     }
 
-    @Override
-    public void writeTimeout(Object source, String method, long timeoutThreshold, long timeout) {
-        System.out.println(serializer.timeout(source, method, timeoutThreshold, timeout));
-    }
-
 }

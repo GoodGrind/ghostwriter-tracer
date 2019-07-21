@@ -13,7 +13,5 @@ public interface TracerWriter {
 
     void writeError(Object source, String method, Throwable error);
 
-    void writeTimeout(Object source, String method, long timeoutThreshold, long timeout);
-
 }
 // end::writer[]

@@ -1,5 +1,7 @@
 package io.ghostwriter.rt.tracer.serializer;
 
+import java.util.Arrays;
+
 
 public class StringSerializer implements TracerSerializer {
 
@@ -125,23 +127,6 @@ public class StringSerializer implements TracerSerializer {
         return sb.toString();
     }
 
-    @Override
-    public String timeout(Object source, String method, long timeoutThreshold, long timeout) {
-        final int DEFAULT_CAPACITY = 64;
-        final StringBuffer sb = new StringBuffer(DEFAULT_CAPACITY);
-
-        if (doIndent) {
-            indentation.apply(sb);
-        }
-        sb.append("TIMEOUT: ").append(timeout);
-
-        if (isFormatted) {
-            sb.append("\n");
-        }
-
-        return sb.toString();
-    }
-
     private StringBuffer appendParameters(StringBuffer sb, Object[] params) {
         final int NUMBER_OF_ENTRIES_PER_PARAMETERS = 2;
 
@@ -163,11 +148,33 @@ public class StringSerializer implements TracerSerializer {
 
     // Override if you want to have a different toString solution used, such as one based on reflection
     protected String serialize(Object value) {
-        final String stringRepresentation = String.valueOf(value);
-        if (value instanceof String) {
-            return "\"" + stringRepresentation + "\"";
+        try {
+            if (value instanceof Object[]) {
+                return Arrays.toString((Object[])value);
+            } else if (value instanceof boolean[]) {
+                return Arrays.toString((boolean[])value);
+            } else if (value instanceof byte[]) {
+                return Arrays.toString((byte[])value);
+            } else if (value instanceof short[]) {
+                return Arrays.toString((short[])value);
+            } else if (value instanceof char[]) {
+                return Arrays.toString((char[])value);
+            } else if (value instanceof int[]) {
+                return Arrays.toString((int[])value);
+            } else if (value instanceof long[]) {
+                return Arrays.toString((long[])value);
+            } else if (value instanceof float[]) {
+                return Arrays.toString((float[])value);
+            } else if (value instanceof double[]) {
+                return Arrays.toString((double[])value);
+            } else if (value instanceof String) {
+                return "\"" + value + "\"";
+            } else {
+                return String.valueOf(value);
+            }
+        } catch (Throwable t) {
+            return "???";
         }
-        return stringRepresentation;
     }
 
 }
